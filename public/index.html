@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&#60;/Onesimus&#62;</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="&#60;/Onesimus&#62;" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.4.2/jspdf.plugin.autotable.min.js"></script>
+<body>
+    <div class="title">
+            <h1>&#60;/Onesimus&#62;</h1>
+        </div>    
+        <div class="top-section">    
+        <div class="add-section">
+                <select name="Buch" id="book_select" required>
+                <option value="" disabled selected>Buch auswählen</option>
+                <option value="" disabled>-- Altes Testament --</option>
+                <option value="Gen">1. Mose</option>
+                <option value="Ex">2. Mose</option>
+                <option value="Lev">3. Mose</option>
+                <option value="Num">4.Mose</option>
+                <option value="Josh">Josua</option>
+                <option value="Judg">Richter</option>
+                <option value="Ru">Ruth</option>
+                <option value="1 Sam">1. Samuel</option>
+                <option value="2 Sam">2. Samuel</option>
+                <option value="1 Ki">1. Könige</option>
+                <option value="2 Ki">2. Könige</option>
+                <option value="1 Chron">1. Chronik</option>
+                <option value="2 Chron">2. Chronik</option>
+                <option value="Ezra">Esra</option>
+                <option value="Neh">Nehemia</option>
+                <option value="Esth">Esther</option>
+                <option value="Job">Hiob</option>
+                <option value="Ps">Psalm</option>
+                <option value="Prov">Sprüche</option>
+                <option value="Ecc">Prediger</option>
+                <option value="SOS">Hohelied</option>
+                <option value="Isa">Jesaja</option>
+                <option value="Jer">Jeremia</option>
+                <option value="Lam">Klagelieder</option>
+                <option value="Eze">Hesekiel</option>
+                <option value="Dan">Daniel</option>
+                <option value="Hos">Hosea</option>
+                <option value="Joel">Joel</option>
+                <option value="Amos">Amos</option>
+                <option value="Obad">Obadja</option>
+                <option value="Jon">Jona</option>
+                <option value="Micah">Micha</option>
+                <option value="Nah">Nahum</option>
+                <option value="Hab">Habakuk</option>
+                <option value="Zeph">Zephanja</option>
+                <option value="Hag">Haggai</option>
+                <option value="Zech">Sacharja</option>
+                <option value="Mal">Maleachi</option>
+                <option value="" disabled>-- Neues Testament --</option>
+                <option value="Matt">Matthäus</option>
+                <option value="Mark">Markus</option>
+                <option value="Luke">Lukas</option>
+                <option value="John">Johannes</option>
+                <option value="Acts">Apostelgeschichte</option>
+                <option value="Rom">Römer</option>
+                <option value="1 Cor">1. Korinther</option>
+                <option value="2 Cor">2. Korinther</option>
+                <option value="Gal">Galater</option>
+                <option value="Eph">Epheser</option>
+                <option value="Phil">Philipper</option>
+                <option value="Col">Kolosser</option>
+                <option value="1 Thess">1. Thessalonischer</option>
+                <option value="2 Thess">2. Thessalonischer</option>
+                <option value="1 Tim">1. Timotheus</option>
+                <option value="2 Tim">2. Timotheus</option>
+                <option value="Titus">Titus</option>
+                <option value="Phm">Philemon</option>
+                <option value="Heb">Hebräer</option>
+                <option value="Jas">Jakobus</option>
+                <option value="1 Pet">1. Petrus</option>
+                <option value="2 Pet">2. Petrus</option>
+                <option value="1 John">1. Johannes</option>
+                <option value="2 John">2. Johannes</option>
+                <option value="3 John">3. Johannes</option>
+                <option value="Jude">Judas</option>
+                <option value="Rev">Offenbarung</option>
+            </select>
+            <input type="number" id="chapter_select" name="Kapitel" placeholder="Kapitel" onkeypress="if(event.keyCode==13){submit()}" required>
+            <input type="number" id="verse_select" name="Vers" placeholder="Vers" onkeypress="if(event.keyCode==13){submit()}" required>
+            <input type="number" id="multi_select" name="Multi" placeholder="(Bis)" onkeypress="if(event.keyCode==13){submit()}">
+            <button id="submit" onclick="submit()">+</button>
+        </div>
+        <div class="seperator"></div>
+        <div class="action-buttons">
+            <button onclick="saveDoc()"><img src="download.svg">Speichern</button>
+            <button onclick="openDoc()"><img src="monitor.svg" alt="">Öffnen</button>
+        </div>
+    </div>
+    
+    <table id="list" class="list">
+        <tr class="list-titles">
+            <th class="reference" data-field="reference">Stelle</th>
+            <th class="german" data-field="german">Deutsch</th>
+            <th class="russian" data-field="russian">Russisch</th>
+            <th class="delete" data-field="delete">Löschen</th>
+        </tr>
+    </table>
+    <footer>
+        <img src="coffee.svg" onclick="alert(`=============\nVersion 1.21.6\n=============\n\nDanke, dass du Onesimus benutzt!\n~Joel\n\njoel@onesimus.de`)"><p>&nbsp;&#8226; <a href="feedback.html">Feedback</a></p>
+    </footer>
+    <script src="main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const feedback = urlParams.get('feedback');
+        if (feedback === 'true') {
+        alert('Vielen Dank! Dein Feedback ist bei uns eingegangen.');
+        }
+    </script>
+</body>
+</html>
