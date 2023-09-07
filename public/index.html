@@ -117,5 +117,28 @@
         alert('Vielen Dank! Dein Feedback ist bei uns eingegangen.');
         }
     </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBenBg7OJbPj-Q0WAEBIr2a_aHpwwPgVss",
+          authDomain: "onesimus-tool.firebaseapp.com",
+          projectId: "onesimus-tool",
+          storageBucket: "onesimus-tool.appspot.com",
+          messagingSenderId: "630259938277",
+          appId: "1:630259938277:web:25bc96e459e29137def50c",
+          measurementId: "G-T5WSN7VZ0D"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </body>
 </html>
