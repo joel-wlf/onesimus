@@ -178,8 +178,8 @@ function openDoc() {
     })
 
     var pageHeight = doc.internal.pageSize.height;
-
-    doc.setFontSize(10)
+                                
+            doc.setFontSize(10)
     doc.text(5, pageHeight - 5, '</Onesimus>');
 
     var newWindow = window.open()
