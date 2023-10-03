@@ -143,6 +143,10 @@ function saveDoc() {
     doc.setFontSize(10)
     doc.text(5, pageHeight - 5, '</Onesimus>');
 
+    gtag('event', 'generate_pdf', {
+        'title': title
+    })
+
     doc.save(title+'.pdf')
 }
 
@@ -181,6 +185,10 @@ function openDoc() {
                                 
             doc.setFontSize(10)
     doc.text(5, pageHeight - 5, '</Onesimus>');
+
+    gtag('event', 'generate_pdf', {
+        'title': title
+    })
 
     var newWindow = window.open()
  
