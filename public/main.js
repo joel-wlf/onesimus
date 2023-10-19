@@ -11,11 +11,19 @@ const list = document.getElementById('list')
 var database = []
 
 
-function httpGet(theUrl) {
+function httpGet(url) {
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.open("GET", theUrl, false)
+    xmlHttp.open("GET", url, false)
     xmlHttp.send(null)
     return xmlHttp.responseText
+}
+
+function httpPost(url, body) {
+        var xmlHttp = new XMLHttpRequest()
+        xmlHttp.open("POST", url, false)
+        xmlHttp.setRequestHeader('Content-Type', 'application/json')
+        xmlHttp.send(JSON.stringify(body))
+        return xmlHttp.responseText
 }
 
 function getVerse(reference, translation) {
@@ -142,12 +150,11 @@ function saveDoc() {
 
     doc.setFontSize(10)
     doc.text(5, pageHeight - 5, '</Onesimus>');
-
-    gtag('event', 'generate_pdf', {
-        'title': title
-    })
-
+    
     doc.save(title+'.pdf')
+
+    httpPost('https://discord.com/api/webhooks/1164564695412387850/C0r-cfzxpMigxTb6ds8E9v1CucVmyVfp1axQgVa1N3D8ieCrLh4d5SJu9UishPwJC4OC', {'content': `PDF generiert: ${title}`,
+    'username': 'Onesimus'})
 }
 
 function openDoc() {
@@ -185,13 +192,11 @@ function openDoc() {
                                 
             doc.setFontSize(10)
     doc.text(5, pageHeight - 5, '</Onesimus>');
-
-    gtag('event', 'generate_pdf', {
-        'title': title
-    })
-
+    
     var newWindow = window.open()
- 
+    
     newWindow.location = doc.output('bloburl')
-
+    
+    httpPost('https://discord.com/api/webhooks/1164564695412387850/C0r-cfzxpMigxTb6ds8E9v1CucVmyVfp1axQgVa1N3D8ieCrLh4d5SJu9UishPwJC4OC', {'content': `PDF generiert: ${title}`,
+    'username': 'Onesimus'})
 }
